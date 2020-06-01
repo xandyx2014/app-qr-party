@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="menu-invitaciones"></div>
+  <ng-container *ngIf="$invitacion | async as invitacion; else elseTemplate">
+    <ng-container *ngIf="invitacion.length; else elseTemplateInvitacion">
+      <ion-virtual-scroll [items]="invitacion">
+        <ion-card *virtualItem="let item" mode="ios">
+          <ion-card-header>
+            <ion-grid class="ion-no-margin ion-no-padding">
+              <ion-row class="ion-align-items-center">
+                <ion-col size="11">
+                  <ion-card-subtitle mode="md">Creado {{item.createdAt | date:'d/M/yy, h:mm a'}}</ion-card-subtitle>
+                </ion-col>
+                <ion-col size="1" (click)="presentActionSheet(item)">
+                  <ion-icon style="font-size: 1.5em;" name="ellipsis-vertical-outline"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-card-title mode="md">{{item.asunto | slice:0:20}}...</ion-card-title>
+            <ion-card-subtitle mode="md">Valido hasta {{item.fechaLimite | date:'d/M/yy'}}</ion-card-subtitle>
+            <ion-card-subtitle mode="md">Codigo: <ion-text color="warning">
+              {{item.codigo}}
+            </ion-text></ion-card-subtitle>
+            <ion-card-subtitle mode="md">Limite Invitaciones: <ion-text color="primary">
+                {{item.limite}}
+              </ion-text>
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-chip color="primary" mode="ios" outline="true" routerLink="/invitados">
+              <ion-icon name="person-circle-outline"></ion-icon>
+              <ion-label style="font-size: 0.7em;">Invitados</ion-label>
+            </ion-chip>
+            <ion-chip color="warning" mode="ios" outline="true" ngxClipboard [cbContent]="item.codigo"
+              (cbOnSuccess)="shared($event)">
+              <ion-icon name="clipboard-outline"></ion-icon>
+              <ion-label style="font-size: 0.7em;">Copiar</ion-label>
+            </ion-chip>
+          </ion-card-content>
+        </ion-card>
+      </ion-virtual-scroll>
+    </ng-container>
+    <ng-template #elseTemplateInvitacion>
+      <ion-card mode="ios">
+        <ion-card-header>
+          <ion-card-subtitle>No tienes invitaciones</ion-card-subtitle>
+          <ion-card-subtitle>intenta crear una</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ng-template>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div style="width: 100vw;" class="ion-text-center">
+      <ion-spinner color="light" name="bubbles"></ion-spinner>
+    </div>
+  </ng-template>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" mode="ios">
+    <ion-fab-button mode="ios" routerLink="/formulario">
+      <ion-icon name="add" mode="ios"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

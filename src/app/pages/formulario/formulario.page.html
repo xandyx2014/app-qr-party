@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="menu-invitaciones"></div>
+  <ion-card>
+    <div style="width: 100%;" class="ion-text-center ion-margin-top">
+      <img src="assets/invitacion.svg" alt="" srcset="" style="width: 50vw;">
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>Invita a tus Conocidos</ion-card-subtitle>
+      <ion-card-title>Codigo de invitacion</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form class="ion-no-margin ion-no-padding">
+        <ion-item  class="ion-no-margin ion-no-padding">
+          <ion-label>Fecha Limite</ion-label>
+          <ion-datetime display-format="DD.MMM.YYYY" monthShortNames="[Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]"></ion-datetime>
+        </ion-item>
+        <ion-item  lines="none"  class="ion-no-margin ion-no-padding">
+          <ion-text color="danger" class="form-error">
+            Seleccione una fecha
+          </ion-text>
+        </ion-item>
+        <ion-item  class="ion-no-margin ion-no-padding">
+          <ion-label position="floating">Codigo de invitacion</ion-label>
+          <ion-input [(ngModel)]="codigo" [ngModelOptions]="{standalone: true}" type="text"  maxlength="5" clearInput="true"></ion-input>
+        </ion-item>
+        <ion-item  lines="none"  class="ion-no-margin ion-no-padding">
+          <ion-text color="primary" class="form-error">
+            {{codigo | uppercase}}
+          </ion-text>
+        </ion-item>
+        <ion-item  lines="none"  class="ion-no-margin ion-no-padding">
+          <ion-text color="danger" class="form-error">
+            Escriba una codigo
+          </ion-text>
+        </ion-item>
+        <ion-item  class="ion-no-margin ion-no-padding">
+          <ion-label  position="floating">Limite de Personas</ion-label>
+          <ion-input type="number" inputmode="numeric"  max="10000" clearInput="true"></ion-input>
+        </ion-item>
+        <ion-item  lines="none"  class="ion-no-margin ion-no-padding">
+          <ion-text color="danger" class="form-error">
+            Elija un limite de personas
+          </ion-text>
+        </ion-item>
+        <ion-item  class="ion-no-margin ion-no-padding">
+          <ion-label  position="floating">Descripcion</ion-label>
+          <ion-textarea placeholder="Descripcion..." maxlength="255"></ion-textarea>
+        </ion-item>
+        <!-- <ion-item  lines="none">
+          <ion-text color="danger" class="form-error">
+            Elija un limite de personas
+          </ion-text>
+        </ion-item> -->
+        <ion-button class="ion-margin-top" block color="primary" type="submit" expand="full" shape="round">
+          Crear
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

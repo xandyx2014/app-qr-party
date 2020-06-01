@@ -24,3 +24,12 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+*, :root {
+    letter-spacing: 1.7px;
+}
+.my-custom-class-loading {
+    --spinner-color: var(--ion-color-primary);
+}
+/* .my-custom-class-alert .alert-wrapper {
+    background: var(--ion-color-primary);
+} */

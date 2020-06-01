@@ -1,0 +1,117 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+
+    </ion-buttons>
+    <ion-icon name="person-circle-outline" class="ion-margin icon-person-custom" slot="end" style="font-size: 1.5em;">
+    </ion-icon>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="background-menu ion-text-center">
+    <ion-card mode="ios" class="card-menu">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4" routerLink="/invitaciones">
+              <div class="ion-activatable">
+                <ion-icon name="document-attach-outline" color="primary" style="font-size: 2.4em;"></ion-icon>
+                <br>
+                <ion-text color="medium" class="text-grid">
+                  Invitados
+                </ion-text>
+                <ion-ripple-effect type="bounded"></ion-ripple-effect>
+              </div>
+
+            </ion-col>
+            <ion-col size="4">
+              <div class="ion-activatable">
+                <ion-icon name="people-outline" color="primary" style="font-size: 2.4em;"></ion-icon>
+                <br>
+                <ion-text color="medium" class="text-grid">
+                  Perfil
+                </ion-text>
+                <ion-ripple-effect type="bounded"></ion-ripple-effect>
+              </div>
+
+            </ion-col>
+            <ion-col size="4" routerLink="/token">
+              <div class="ion-activatable">
+                <ion-icon name="key-outline" color="primary" style="font-size: 2.4em;"></ion-icon>
+                <br>
+                <ion-text color="medium" class="text-grid">
+                  Token
+                </ion-text>
+                <ion-ripple-effect type="bounded"></ion-ripple-effect>
+              </div>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-card class="card-firts ion-activatable" mode="ios" routerLink="/invitaciones">
+    <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    <ion-card-content>
+      <ion-grid fixed>
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+          <ion-col size="3">
+            <img class="image" src="assets/invitaciones.svg" alt="" srcset="">
+          </ion-col>
+          <ion-col size="7" >
+            <ion-text color="medium" >
+              <h4 class="text-grid--title">Ver tus invitaciones</h4>
+            </ion-text>
+          </ion-col>
+          <ion-col size="2" >
+            <ion-icon color="primary" name="chevron-forward-outline" style="font-size: 2em;"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="ion-activatable"  mode="ios" routerLink="/token">
+    <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    <ion-card-content>
+      <ion-grid fixed>
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+          <ion-col size="3">
+            <img class="image" src="assets/token.svg" alt="" srcset="">
+          </ion-col>
+          <ion-col size="7">
+            <ion-text color="medium" >
+              <h3 class="text-grid--title">Ver token</h3>
+            </ion-text>
+          </ion-col>
+          <ion-col size="2" >
+            <ion-icon color="primary" name="chevron-forward-outline" style="font-size: 2em;"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="ion-activatable"  mode="ios">
+    <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    <ion-card-content>
+      <ion-grid fixed>
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+          <ion-col size="3">
+            <img class="image" src="assets/perfil.svg" alt="" srcset="">
+          </ion-col>
+          <ion-col size="7">
+            <ion-text color="medium" >
+              <h3 class="text-grid--title">Ver perfil</h3>
+            </ion-text>
+          </ion-col>
+          <ion-col size="2" >
+            <ion-icon color="primary" name="chevron-forward-outline" style="font-size: 2em;"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

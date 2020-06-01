@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="menu-invitaciones"></div>
+
+  <ion-list>
+    <ion-list-header>
+      Lista de personas 
+      <ion-badge class="ion-margin-start" color="primary" mode="ios">
+        {{ invitados.length}}
+      </ion-badge>
+    </ion-list-header>
+    <ion-virtual-scroll [items]="invitados">
+      <ion-item *virtualItem="let item">
+        <ion-avatar slot="start">
+          <img src="assets/person.svg">
+        </ion-avatar>
+        <ion-label>
+          <h2>Andy jesus</h2>
+          <h3>Macias Gomez</h3>
+          <p>Fecha Ingreso 20/40/2020..</p>
+        </ion-label>
+      </ion-item>
+    </ion-virtual-scroll>
+    
+  </ion-list>
+</ion-content>

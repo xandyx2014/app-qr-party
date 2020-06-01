@@ -8,8 +8,32 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'folder',
+    loadChildren: () => import('./pages/folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'token',
+    loadChildren: () => import('./pages/token/token.module').then( m => m.TokenPageModule)
+  },
+  {
+    path: 'invitaciones',
+    loadChildren: () => import('./pages/invitaciones/invitaciones.module').then( m => m.InvitacionesPageModule)
+  },
+  {
+    path: 'formulario',
+    loadChildren: () => import('./pages/formulario/formulario.module').then( m => m.FormularioPageModule)
+  },
+  {
+    path: 'invitados',
+    loadChildren: () => import('./pages/invitados/invitados.module').then( m => m.InvitadosPageModule)
+  },
+  {
+    path: 'validacion',
+    loadChildren: () => import('./pages/validacion/validacion.module').then( m => m.ValidacionPageModule)
   }
 ];
 

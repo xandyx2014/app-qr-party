@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="$token | async as token; else elseTemplate">
+    <ion-progress-bar type="determinate" [value]="contador" [buffer]="contador" reversed="false" color="dark">
+    </ion-progress-bar>
+    <ion-list>
+      <ion-item>
+        <ion-label>Token</ion-label>
+        <ion-chip color="primary" mode="ios" outline="true">
+          <ion-label>{{ token.token | uppercase }}</ion-label>
+          <ion-icon name="key-outline" color="primary" style="font-size: 1em;"></ion-icon>
+        </ion-chip>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div style="width: 100vw;" class="ion-text-center">
+    <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+  </ng-template>
+
+
+
+</ion-content>

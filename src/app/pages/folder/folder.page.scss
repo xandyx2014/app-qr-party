@@ -1,0 +1,69 @@
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+.background-menu {
+  width: 100%;
+  height: 20vh;
+  margin: 0 auto;
+  background-color: var(--ion-color-primary);
+  position: relative;
+}
+.card-menu {
+  width: 90%;
+  bottom: -13vh;
+  position: absolute;
+}
+.card-firts {
+  margin-top: 13vh;
+  
+}
+.image {
+  height: 9vh;
+}
+.icon-person-custom:active {
+  pointer-events: none;
+  pointer-events: none;
+  animation: ripples 2s ease;
+}
+
+@keyframes ripples {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.text-grid {
+  font-size: 0.8em;
+  letter-spacing: 1.8px;
+  &--title {
+    font-size: 1em;
+    letter-spacing: 1.8px;
+  }
+}
