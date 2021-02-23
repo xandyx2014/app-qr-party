@@ -1,0 +1,41 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content >
+  <ng-container *ngIf="($params | async) as params; else elseTemplate">
+    <div style="width: 100%;" class="ion-text-center ion-margin-top">
+      <img src="assets/succes.gif" alt="" srcset="" style="width: 50vw;">
+    </div>
+    <ion-card mode="ios" class="ion-margin">
+      <ion-card-header>
+        <ion-card-subtitle mode="md">Registrado {{params.createdAt | date:'d/M/yy, h:mm a'}}</ion-card-subtitle>
+        <ion-card-title mode="md">Bienvenido</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list mode="ios">
+          <ion-item>
+            <ion-label>Nombre</ion-label>
+            <ion-label>{{params?.nombre}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Apellido</ion-label>
+            <ion-label>{{params?.apellido}}</ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-button  routerLink="/validacion" expand="block"  shape="round" class="ion-margin">
+          Validar otro codigo
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+  <ng-template #elseTemplate>
+    
+  </ng-template>
+  
+ 
+</ion-content>
