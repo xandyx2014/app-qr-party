@@ -3,6 +3,7 @@ import { interval, Subscription, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { TokenService } from 'src/app/services/token.service';
 import { TokenAuth } from 'src/app/shared/interface/token.interface';
+import { NotificacionesService } from 'src/app/services/notificaciones.service';
 @Component({
   selector: 'app-token',
   templateUrl: './token.page.html',
@@ -16,7 +17,8 @@ export class TokenPage implements OnInit {
   private subscription = new Subscription();
   $token: Observable<TokenAuth>;
   constructor(
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private notificacionService: NotificacionesService
   ) { }
 
   ngOnInit() {
@@ -24,7 +26,7 @@ export class TokenPage implements OnInit {
   ionViewWillEnter() {
     this.$token = this.tokenService.obtener();
     this.subscription.add(
-    interval(250)
+    interval(1000)
     .pipe(
       tap(value => {
         this.i = this.i + 1;
@@ -45,5 +47,9 @@ export class TokenPage implements OnInit {
   ionViewWillLeave() {
     this.subscription.unsubscribe();
   }
-
+  shared(event) {
+    if (event.isSuccess) {
+      this.notificacionService.presentToast(`${event.content} Copiado`);
+    }
+  }
 }

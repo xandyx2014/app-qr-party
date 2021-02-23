@@ -3,7 +3,7 @@ import { MenuController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { USER_KEY } from 'src/app/shared/config.shared';
+import { USER_KEY, REMEMBER_KEY } from 'src/app/shared/config.shared';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +12,8 @@ import { USER_KEY } from 'src/app/shared/config.shared';
 })
 export class LoginPage implements OnInit {
   myForm: FormGroup;
+  remerber = false;
+  username = '';
   constructor(
     private menuController: MenuController,
     private authService: AuthService,
@@ -20,22 +22,35 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    const rememberKey = this.localStorageService.getObject(REMEMBER_KEY);
+    // console.log(rememberKey);
+    if (rememberKey) {
+      this.remerber =  rememberKey.remerber;
+      this.username =  rememberKey.username;
+    }
+    // console.log(this.remerber);
     this.crearFormulario();
   }
-  ionViewWillEnter() {
-    this.menuController.enable(false);
-    this.localStorageService.removeItem(USER_KEY);
+  async ionViewWillEnter() {
+    await this.menuController.enable(false);
+    await this.localStorageService.removeItem(USER_KEY);
   }
   crearFormulario() {
     this.myForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: [this.username, Validators.required],
+      password: ['', Validators.required],
+      remerber: [this.remerber]
     });
   }
-  login() {
+  async login() {
     console.log(this.myForm.value);
-    const { username, password } = this.myForm.value;
-    this.authService.login(username, password);
+    const { username, password, remerber } = this.myForm.value;
+    await this.authService.login(username, password);
+    if (remerber) {
+      await this.localStorageService.setObject(REMEMBER_KEY, { username, remerber });
+    } else {
+      await this.localStorageService.setObject(REMEMBER_KEY, { username: '', remerber: false });
+    }
   }
 
 }

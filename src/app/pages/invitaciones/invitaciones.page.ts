@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { InvitacionesService } from 'src/app/services/invitaciones.service';
 import { Observable } from 'rxjs';
 import { Invitacion } from 'src/app/shared/interface/invitacion.interface';
+import { take, filter, map } from 'rxjs/operators';
 @Component({
   selector: 'app-invitaciones',
   templateUrl: './invitaciones.page.html',
@@ -23,7 +24,12 @@ export class InvitacionesPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter() {
-    this.$invitacion = this.invitacionService.obtener();
+    this.obtenerInvitaciones();
+  }
+  obtenerInvitaciones() {
+    this.$invitacion = this.invitacionService.obtener().pipe(
+      map(item => item.filter(value => value.deletedAt === null))
+    );
   }
   shared(event) {
     if (event.isSuccess) {
@@ -41,14 +47,21 @@ export class InvitacionesPage implements OnInit {
         icon: 'trash',
         handler: () => {
           console.log('Delete clicked');
-          this.notificacionService.presentToast('Borrado correctamente');
+          this.invitacionService.borrar(item.id)
+          .pipe(
+            take(1)
+          )
+          .subscribe( resp => {
+            this.obtenerInvitaciones();
+            this.notificacionService.presentToast('Borrado correctamente');
+          });
         }
       }, {
         text: 'Editar',
         icon: 'pencil-outline',
         handler: () => {
           console.log('Share clicked');
-          this.router.navigate(['/formulario']);
+          this.router.navigate(['/formulario'], {queryParams: {...item}});
         }
       },
       {

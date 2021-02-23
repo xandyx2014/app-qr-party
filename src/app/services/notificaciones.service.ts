@@ -29,10 +29,10 @@ export class NotificacionesService {
 
     await alert.present();
   }
-  async presentLoading() {
+  async presentLoading(message = 'Cargando...') {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
-      message: 'Please wait...',
+      message,
       duration: 5000
     });
     await loading.present();

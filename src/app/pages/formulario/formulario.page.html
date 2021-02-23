@@ -17,51 +17,61 @@
       <ion-card-title>Codigo de invitacion</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form class="ion-no-margin ion-no-padding">
+      <form [formGroup]="myForm" class="ion-no-margin ion-no-padding">
         <ion-item  class="ion-no-margin ion-no-padding">
           <ion-label>Fecha Limite</ion-label>
-          <ion-datetime display-format="DD.MMM.YYYY" monthShortNames="[Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]"></ion-datetime>
+          <ion-datetime formControlName="fechaLimite" [min]="toDay" display-format="DD.MMM.YYYY" monthShortNames="[Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]"></ion-datetime>
         </ion-item>
-        <ion-item  lines="none"  class="ion-no-margin ion-no-padding">
+        <ion-item *ngIf="myForm.get('fechaLimite').dirty && myForm.get('fechaLimite').invalid"  lines="none"  class="ion-no-margin ion-no-padding">
           <ion-text color="danger" class="form-error">
             Seleccione una fecha
           </ion-text>
         </ion-item>
         <ion-item  class="ion-no-margin ion-no-padding">
           <ion-label position="floating">Codigo de invitacion</ion-label>
-          <ion-input [(ngModel)]="codigo" [ngModelOptions]="{standalone: true}" type="text"  maxlength="5" clearInput="true"></ion-input>
+          <ion-input formControlName="codigo" type="text"  maxlength="5" clearInput="true"></ion-input>
         </ion-item>
         <ion-item  lines="none"  class="ion-no-margin ion-no-padding">
-          <ion-text color="primary" class="form-error">
-            {{codigo | uppercase}}
+          <ion-text *ngIf="myForm.get('codigo').value" color="primary" class="form-error">
+            {{myForm.get('codigo').value | uppercase}}
           </ion-text>
         </ion-item>
-        <ion-item  lines="none"  class="ion-no-margin ion-no-padding">
+        <ion-item *ngIf="myForm.get('limite').dirty && myForm.get('limite').invalid"  lines="none"  class="ion-no-margin ion-no-padding">
           <ion-text color="danger" class="form-error">
             Escriba una codigo
           </ion-text>
         </ion-item>
         <ion-item  class="ion-no-margin ion-no-padding">
           <ion-label  position="floating">Limite de Personas</ion-label>
-          <ion-input type="number" inputmode="numeric"  max="10000" clearInput="true"></ion-input>
+          <ion-input formControlName="limite" type="number" inputmode="numeric"  max="10000" clearInput="true"></ion-input>
         </ion-item>
-        <ion-item  lines="none"  class="ion-no-margin ion-no-padding">
+        <ion-item  *ngIf="myForm.get('codigo').dirty && myForm.get('codigo').invalid" lines="none"  class="ion-no-margin ion-no-padding">
           <ion-text color="danger" class="form-error">
             Elija un limite de personas
           </ion-text>
         </ion-item>
         <ion-item  class="ion-no-margin ion-no-padding">
           <ion-label  position="floating">Descripcion</ion-label>
-          <ion-textarea placeholder="Descripcion..." maxlength="255"></ion-textarea>
+          <ion-textarea formControlName='asunto' placeholder="Descripcion..." maxlength="255"></ion-textarea>
         </ion-item>
         <!-- <ion-item  lines="none">
           <ion-text color="danger" class="form-error">
             Elija un limite de personas
           </ion-text>
         </ion-item> -->
-        <ion-button class="ion-margin-top" block color="primary" type="submit" expand="full" shape="round">
-          Crear
-        </ion-button>
+        <ng-container *ngIf="editar; else elseTemplate">
+          <ion-button (click)="actualizar()" [disabled]="myForm.invalid" class="ion-margin-top" block color="primary" type="submit" expand="full" shape="round">
+            Actualizar
+          </ion-button>
+          
+        </ng-container>
+        <ng-template #elseTemplate>
+          <ion-button (click)="crear()" [disabled]="myForm.invalid" class="ion-margin-top" block color="primary" type="submit" expand="full" shape="round">
+            Crear
+          </ion-button>
+        </ng-template>
+        
+        
       </form>
     </ion-card-content>
   </ion-card>

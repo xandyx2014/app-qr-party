@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'folder',
     pathMatch: 'full'
   },
   {
@@ -28,12 +28,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/formulario/formulario.module').then( m => m.FormularioPageModule)
   },
   {
-    path: 'invitados',
+    path: 'invitados/:id',
     loadChildren: () => import('./pages/invitados/invitados.module').then( m => m.InvitadosPageModule)
   },
   {
     path: 'validacion',
     loadChildren: () => import('./pages/validacion/validacion.module').then( m => m.ValidacionPageModule)
+  },
+  {
+    path: 'confirmado',
+    loadChildren: () => import('./pages/confirmado/confirmado.module').then( m => m.ConfirmadoPageModule)
   }
 ];
 

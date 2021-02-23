@@ -14,4 +14,13 @@ export class InvitacionesService {
   obtener() {
     return this.http.get<Invitacion[]>(`${this.url}/invitacion`);
   }
+  crear(invitacion: Invitacion) {
+    return this.http.post<Invitacion>(`${this.url}/invitacion`, invitacion);
+  }
+  borrar(id: number) {
+    return this.http.delete(`${this.url}/invitacion/${id}`);
+  }
+  actualizar(id: number, invitacion: Invitacion) {
+    return this.http.put(`${this.url}/invitacion/${id}`, {...invitacion});
+  }
 }

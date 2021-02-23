@@ -13,7 +13,8 @@
     <ion-list>
       <ion-item>
         <ion-label>Token</ion-label>
-        <ion-chip color="primary" mode="ios" outline="true">
+        <ion-chip ngxClipboard [cbContent]="token.token"
+        (cbOnSuccess)="shared($event)" color="primary" mode="ios" outline="true">
           <ion-label>{{ token.token | uppercase }}</ion-label>
           <ion-icon name="key-outline" color="primary" style="font-size: 1em;"></ion-icon>
         </ion-chip>

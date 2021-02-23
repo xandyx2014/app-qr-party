@@ -1,62 +1,68 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
+<ion-content color="primary">
   <div class="menu-invitaciones"></div>
-  <ion-card>
+  <ion-card class="ion-margin ion-padding">
     <ion-card-header>
-      <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+      <ion-card-subtitle>Registro de codigo</ion-card-subtitle>
       <ion-card-title>Formulario de validacion</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form class="ion-no-margin ion-no-padding">
+      <form [formGroup]="myForm" class="ion-no-margin ion-no-padding">
         <ion-item class="ion-no-margin ion-no-padding">
           <ion-label position="stacked">Codigo del Grupo</ion-label>
-          <ion-input type="text" maxlength="5" clearInput="true"></ion-input>
+          <ion-input formControlName="codigo" type="text" maxlength="10" clearInput="true"></ion-input>
         </ion-item>
-        <ion-item lines="none" class="ion-no-margin ion-no-padding">
+        <ion-item *ngIf="myForm.get('codigo').dirty && myForm.get('codigo').invalid" lines="none" class="ion-no-margin ion-no-padding">
           <ion-text color="danger" class="form-error">
-            Error alguno
+            Escriba el codigo
           </ion-text>
         </ion-item>
         <ion-item class="ion-no-margin ion-no-padding">
           <ion-label position="stacked">Validacion token</ion-label>
-          <ion-input type="text" maxlength="5" clearInput="true"></ion-input>
+          <ion-input formControlName="token" type="text" maxlength="5" clearInput="true"></ion-input>
         </ion-item>
-        <ion-item lines="none" class="ion-no-margin ion-no-padding">
+        <ion-item *ngIf="myForm.get('token').dirty && myForm.get('token').invalid" lines="none" class="ion-no-margin ion-no-padding">
           <ion-text color="danger" class="form-error">
-            Error alguno
+            Escriba el token
           </ion-text>
         </ion-item>
         <ion-item class="ion-no-margin ion-no-padding">
           <ion-label position="stacked">Nombre</ion-label>
-          <ion-input type="text" maxlength="30" clearInput="true"></ion-input>
+          <ion-input formControlName="nombre" type="text" maxlength="30" clearInput="true"></ion-input>
         </ion-item>
-        <ion-item lines="none" class="ion-no-margin ion-no-padding">
+        <ion-item *ngIf="myForm.get('nombre').dirty && myForm.get('nombre').invalid" lines="none" class="ion-no-margin ion-no-padding">
           <ion-text color="danger" class="form-error">
-            Error alguno
+           Escriba el nombre
           </ion-text>
         </ion-item>
         <ion-item class="ion-no-margin ion-no-padding">
           <ion-label position="stacked">Apellido</ion-label>
-          <ion-input type="text" maxlength="30" clearInput="true"></ion-input>
+          <ion-input formControlName="apellido" type="text" maxlength="30" clearInput="true"></ion-input>
         </ion-item>
         <ion-item lines="none" class="ion-no-margin ion-no-padding">
-          <ion-text color="danger" class="form-error">
-            Error alguno
+          <ion-text *ngIf="myForm.get('apellido').dirty && myForm.get('apellido').invalid" color="danger" class="form-error">
+            Escriba el apellido
           </ion-text>
         </ion-item>
         <ion-item class="ion-no-margin ion-no-padding">
           <re-captcha 
+          formControlName="captcha"
           (resolved)="resolved($event)" siteKey="6Lcc_PwUAAAAAHHPj7nfglUtXTpZZ2ieyYhSy2m5">
           </re-captcha>
         </ion-item>
-        <ion-button (click)="validar()" class="ion-margin-top" block color="primary" type="submit" expand="full" shape="round">
+        <ion-item lines="none" class="ion-no-margin ion-no-padding">
+          <ion-text *ngIf="myForm.get('captcha').dirty && myForm.get('captcha').invalid" color="danger" class="form-error">
+           Complete el CATPCHA
+          </ion-text>
+        </ion-item>
+        <ion-button (click)="validar()" [disabled]="myForm.invalid" class="ion-margin-top" block color="primary" type="submit" expand="full" shape="round">
           Validar
         </ion-button>
       </form>
